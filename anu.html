@@ -9,18 +9,17 @@
 
 </body>
 <script type="text/javascript">
-const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 const targetUrl = 'https://www.idx.co.id/primary/TradingSummary/GetStockSummary?length=9999&start=1';
 
-fetch(proxyUrl + targetUrl)
+const apiUrl = 'https://api.allorigins.win/get?url=' + 
+               encodeURIComponent(targetUrl);
+
+fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
-        // Ambil semua stockCode
-        const stockCodes = data.data.map(item => item.stockCode);
-        console.log('All Stock Codes:', stockCodes);
-    })
-    .catch(error => {
-        console.error('Error:', error);
+        const jsonData = JSON.parse(data.contents);
+        const stockCodes = jsonData.data.map(item => item.StockCode);
+        console.log('Stock Codes:', stockCodes);
     });
 </script>
 </html>

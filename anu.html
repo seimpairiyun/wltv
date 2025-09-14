@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+fetch('https://www.idx.co.id/primary/TradingSummary/GetStockSummary?length=9999&start=1')
+    .then(response => response.json())
+    .then(data => {
+        // Ambil semua stockCode
+        const stockCodes = data.data.map(item => item.stockCode);
+        console.log('All Stock Codes:', stockCodes);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+</script>
+</html>
